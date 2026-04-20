@@ -1,0 +1,11 @@
+storage:
+  size: 5Gi
+  storageClassName: hostpath   # было "standard"
+
+postgres:
+  password: "dev-password"
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
