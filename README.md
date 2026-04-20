@@ -1,6 +1,6 @@
 # Лабораторная работа №6: Kustomize и Helm, разделение приложения и инфраструктуры
 
-<img width="1280" height="1244" alt="Kubernetes_logo_without_workmark svg" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26" />
+<img width="900" height="980" alt="Kubernetes_logo_without_workmark svg" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26" />
 
 
 ## Клонирование репозитория
