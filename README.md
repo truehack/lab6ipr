@@ -1,11 +1,18 @@
 # Лабораторная работа №6: Kustomize и Helm, разделение приложения и инфраструктуры
 
-<p align="center">
-  <img width="60" height="60" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26" alt="Kubernetes"/>
-  <img width="60" height="60" src="https://github.com/user-attachments/assets/a3305253-3f71-40d6-a8c6-be8bfaf99b34" alt="Helm"/>
-  <img width="60" height="60" src="https://github.com/user-attachments/assets/e70120df-84d8-4b74-a6ee-ca1c793037bc" alt="Kustomize"/>
-  <img width="60" height="60" src="https://www.postgresql.org/media/img/about/press/elephant.png" alt="PostgreSQL"/>
-</p>
+<div align="center">
+  <br/>
+  <img width="55" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26"/>
+  <span style="font-size: 30px;"> + </span>
+  <img width="55" src="https://github.com/user-attachments/assets/a3305253-3f71-40d6-a8c6-be8bfaf99b34"/>
+  <span style="font-size: 30px;"> + </span>
+  <img width="55" src="https://github.com/user-attachments/assets/e70120df-84d8-4b74-a6ee-ca1c793037bc"/>
+  <br/><br/>
+  <h3>☸️ Kubernetes + 📦 Helm + ⚙️ Kustomize</h3>
+  <br/>
+</div>
+
+---
 
 
 
