@@ -6,7 +6,7 @@
   <span style="font-size: 30px;"> + </span>
   <img width="55" src="https://github.com/user-attachments/assets/a3305253-3f71-40d6-a8c6-be8bfaf99b34"/>
   <span style="font-size: 30px;"> + </span>
-  <img width="180" src="https://github.com/user-attachments/assets/e70120df-84d8-4b74-a6ee-ca1c793037bc"/>
+  <img width="60" src="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/docs/images/kustomize.svg" alt="Kustomize"/>
   <br/><br/>
   <h3>☸️ Kubernetes + 📦 Helm + ⚙️ Kustomize</h3>
   <br/>
