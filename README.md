@@ -15,7 +15,6 @@
 - git clone https://github.com/truehack/lab6ipr.git
 - cd lab6ipr
 
-## Проверка структуры проекта
 # Проверка наличия инфраструктуры
 - ls -la telegram-support-infra/k8s/helm/postgres-infra/
 - ls -la telegram-support-infra/k8s/kustomization/
