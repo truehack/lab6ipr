@@ -1,5 +1,6 @@
 # Лабораторная работа №6: Kustomize и Helm, разделение приложения и инфраструктуры
 
+---
 <div align="center">
   <br/>
   <img width="55" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26"/>
