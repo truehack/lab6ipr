@@ -2,14 +2,6 @@
 
 ---
 <div align="center">
-  <br/>
-  <img width="55" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26"/>
-  <span style="font-size: 30px;"> + </span>
-  <img width="55" src="https://github.com/user-attachments/assets/a3305253-3f71-40d6-a8c6-be8bfaf99b34"/>
-  <span style="font-size: 30px;"> + </span>
-  <img width="100" height="100" src="https://github.com/user-attachments/assets/a5148e59-3d88-48d3-a852-905943ed1963" />
-  <span style="font-size: 30px;"> + </span>
-  <br/><br/>
   <h3>☸️ Kubernetes + 📦 Helm + ⚙️ Kustomize</h3>
   <br/>
 </div>
