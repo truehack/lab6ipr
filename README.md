@@ -32,23 +32,30 @@
 - cd lab6ipr
 
 # Установка PostgreSQL через Helm
+```
 helm upgrade --install postgres-infra ./k8s/helm/postgres-infra \
   --namespace telegram-demo --create-namespace \
   --set storage.storageClassName=hostpath \
   --set storage.size=5Gi
+```
 
 ## Проверка работы PostgreSQL
+```
 - kubectl get pods -n telegram-demo
 - kubectl get pvc -n telegram-demo
 - kubectl exec -n telegram-demo postgres-infra-postgres-0 -- psql -U bot_user -d support_bot -c "SELECT 1 as test;"
 - kubectl get secret -n telegram-demo postgres-infra-postgres-secret -o jsonpath="{.data.DATABASE_URL}" | base64 --decode
+```
 
 ## Создание секрет для приложения
+```
 kubectl create secret generic app-secret -n telegram-demo \
   --from-literal=DATABASE_URL="postgresql://bot_user:dev-password@postgres:5432/support_bot" \
   --dry-run=client -o yaml | kubectl apply -f -
+```
 
 ## Создание тестового приложения
+```
 kubectl apply -n telegram-demo -f - <<EOF
 apiVersion: apps/v1
 kind: Deployment
@@ -75,6 +82,7 @@ spec:
               name: app-secret
               key: DATABASE_URL
 EOF
+```
 
 ## Очистка
 - helm uninstall postgres-infra -n telegram-demo
