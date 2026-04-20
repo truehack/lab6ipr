@@ -11,70 +11,81 @@
 
 
 
-## Клонирование репозитория
+# Клонирование репозитория
 - git clone https://github.com/truehack/lab6ipr.git
 - cd lab6ipr
 
-# Проверка наличия инфраструктуры
-- ls -la telegram-support-infra/k8s/helm/postgres-infra/
-- ls -la telegram-support-infra/k8s/kustomization/
+## Работа с репозиторием
+```
+# Создайте namespace
+kubectl create namespace telegram-demo
 
-## Развёртывание инфраструктуры (PostgreSQL)
-- cd lab6ipr
+# Создайте Secret
+kubectl create secret generic postgres-secret -n telegram-demo \
+  --from-literal=POSTGRES_PASSWORD=dev-password
 
-# Установка PostgreSQL через Helm
-```
-helm upgrade --install postgres-infra ./k8s/helm/postgres-infra \
-  --namespace telegram-demo --create-namespace \
-  --set storage.storageClassName=hostpath \
-  --set storage.size=5Gi
-```
+# Создайте ConfigMap
+kubectl create configmap postgres-config -n telegram-demo \
+  --from-literal=POSTGRES_DB=support_bot \
+  --from-literal=POSTGRES_USER=bot_user
 
-## Проверка работы PostgreSQL
-```
-- kubectl get pods -n telegram-demo
-- kubectl get pvc -n telegram-demo
-- kubectl exec -n telegram-demo postgres-infra-postgres-0 -- psql -U bot_user -d support_bot -c "SELECT 1 as test;"
-- kubectl get secret -n telegram-demo postgres-infra-postgres-secret -o jsonpath="{.data.DATABASE_URL}" | base64 --decode
-```
-
-## Создание секрет для приложения
-```
-kubectl create secret generic app-secret -n telegram-demo \
-  --from-literal=DATABASE_URL="postgresql://bot_user:dev-password@postgres:5432/support_bot" \
-  --dry-run=client -o yaml | kubectl apply -f -
-```
-
-## Создание тестового приложения
-```
+# Создайте StatefulSet и Service
 kubectl apply -n telegram-demo -f - <<EOF
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: test-app
+  name: postgres
 spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres
   replicas: 1
   selector:
     matchLabels:
-      app: test-app
+      app: postgres
   template:
     metadata:
       labels:
-        app: test-app
+        app: postgres
     spec:
       containers:
-      - name: app
-        image: alpine
-        command: ["sleep", "infinity"]
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: DATABASE_URL
+      - name: postgres
+        image: postgres:15.3
+        envFrom:
+        - configMapRef:
+            name: postgres-config
+        - secretRef:
+            name: postgres-secret
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: hostpath
+      resources:
+        requests:
+          storage: 5Gi
 EOF
 ```
 
-## Очистка
-- helm uninstall postgres-infra -n telegram-demo
-- kubectl delete namespace telegram-demo
+### Проверка
+```
+kubectl get pods -n telegram-demo
+kubectl get pvc -n telegram-demo
+kubectl exec -n telegram-demo postgres-0 -- psql -U bot_user -d support_bot -c "SELECT 1 as test;"
+```
+
