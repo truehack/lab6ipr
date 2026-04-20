@@ -1,6 +1,7 @@
 # Лабораторная работа №6: Kustomize и Helm, разделение приложения и инфраструктуры
 
-| ![K8s](https://kubernetes.io/images/favicon.png) |
+<img width="1280" height="1244" alt="Kubernetes_logo_without_workmark svg" src="https://github.com/user-attachments/assets/db1e5d5a-4fc4-4228-ad12-1b9f6b6d1e26" />
+
 
 ## Клонирование репозитория
 - git clone https://github.com/truehack/lab6ipr.git
